@@ -1,0 +1,26 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityUser
+
+<h1>Detalhes do Usuário</h1>
+
+<div>
+    <h4>Usuário</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Nome de Usuário
+        </dt>
+        <dd class="col-sm-10">
+            @Model.UserName
+        </dd>
+        <dt class="col-sm-2">
+            Email
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Email
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Voltar à Lista</a>
+</div>

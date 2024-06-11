@@ -1,7 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\ATEC\\ASPNET\\ASPNET\\BlogCarpernter-ASP.NET\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\utilizador\\onedrive - atec - academia de forma\u00E7\u00E3o\\atec\\aspnet\\aspnet\\blogcarpernter-asp.net\\blog\\views\\posts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|solutionrelative:blog\\views\\posts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\ATEC\\ASPNET\\ASPNET\\BlogCarpernter-ASP.NET\\Blog\\Views\\Posts\\Index.cshtml",
+              "RelativeDocumentMoniker": "Blog\\Views\\Posts\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\ATEC\\ASPNET\\ASPNET\\BlogCarpernter-ASP.NET\\Blog\\Views\\Posts\\Index.cshtml",
+              "RelativeToolTip": "Blog\\Views\\Posts\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-10T17:17:25.542Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Blog.Models.Posts>
+
+@{
+    ViewData["Title"] = "Meus Posts";
+}
+
+<h2>Meus Posts</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <img class="card-img-top img-fluid" src="@item.Image" alt="@item.Description" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <p class="card-text mb-5">@item.Description</p>
+                        <p class="card-text">by: @item.Email</p>
+                        <p class="card-text"> @item.CreatedAt</p>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="btn-group" role="group" aria-label="Post Actions">
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

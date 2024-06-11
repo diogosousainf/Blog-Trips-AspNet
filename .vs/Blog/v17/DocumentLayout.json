@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\ATEC\\ASPNET\\ASPNET\\BlogCarpernter-ASP.NET\\",
+  "WorkspaceRootPath": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\utilizador\\onedrive - atec - academia de forma\u00E7\u00E3o\\atec\\aspnet\\aspnet\\blogcarpernter-asp.net\\blog\\views\\posts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\utilizador\\onedrive - atec - academia de forma\u00E7\u00E3o\\documents\\github\\blog-trips-aspnet\\blog\\views\\posts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|solutionrelative:blog\\views\\posts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\ATEC\\ASPNET\\ASPNET\\BlogCarpernter-ASP.NET\\Blog\\Views\\Posts\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Views\\Posts\\Index.cshtml",
               "RelativeDocumentMoniker": "Blog\\Views\\Posts\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\ATEC\\ASPNET\\ASPNET\\BlogCarpernter-ASP.NET\\Blog\\Views\\Posts\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Views\\Posts\\Index.cshtml",
               "RelativeToolTip": "Blog\\Views\\Posts\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADEAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-06-10T17:17:25.542Z",
               "EditorCaption": ""

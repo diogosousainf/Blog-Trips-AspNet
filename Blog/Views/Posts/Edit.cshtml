@@ -4,44 +4,40 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1 class="text-center mb-4">Edit Post</h1>
 
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card shadow">
                 <div class="card-body">
                     <h4 class="card-title">Edit Post</h4>
                     <hr />
-                    <form asp-action="Edit">
+                    <form asp-action="Edit" enctype="multipart/form-data">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
                         <div class="form-group">
-                            <label asp-for="Description" class="control-label">Description:</label>
+                            <label asp-for="Description" class="control-label">Description</label>
                             <input asp-for="Description" class="form-control" />
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
-                        <div class="form-group">
-                            <label asp-for="Image" class="control-label">Image URL:</label>
-                            <input asp-for="Image" class="form-control" />
+                        <div class="form-group mt-3">
+                            <label asp-for="Image" class="control-label">Image Upload</label>
+                            <input type="file" name="imageFile" class="form-control-file" accept="image/*">
                             <span asp-validation-for="Image" class="text-danger"></span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-4">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-save"></i> Save
                             </button>
                         </div>
                     </form>
                 </div>
-                <div class="card-footer">
-                    <a asp-action="Index" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Back to List
-                    </a>
-                </div>
+               
             </div>
         </div>
     </div>
 </div>
+
 
 @section Scripts {
     @{

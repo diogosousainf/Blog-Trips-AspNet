@@ -4,32 +4,37 @@
     ViewData["Title"] = "Create Post";
 }
 
-<h1>Create Post</h1>
+<h1 class="text-center mb-4">Create Post</h1>
 
-<h4>Posts</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <h4 class="card-title text-primary">Create New Post</h4>
+                    <hr />
+                    <form asp-action="Create" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label text-secondary">Description</label>
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mt-4 mb-4">
+                            <label asp-for="Image" class="control-label text-secondary">Image</label>
+                            <input type="file" name="imageFile" class="form-control-file" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mt-5">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fas fa-plus-circle"></i> Create Post
+                            </button>
+                        </div>
+                    </form>
+                </div>
+              
             </div>
-            <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input type="file" name="imageFile" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-            <div class="form-group mt-4">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
@@ -37,3 +42,31 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        color: #333;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    h1, h4 {
+        color: #333;
+    }
+
+    .card {
+        transition: all 0.3s ease;
+        border: none;
+        background-color: #fff;
+    }
+
+    .card-footer {
+        background-color: #fff;
+        border-top: none;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+</style>

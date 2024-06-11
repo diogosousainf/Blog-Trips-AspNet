@@ -26,20 +26,36 @@ namespace Blog.Controllers
         }
 
         // GET: Posts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, int? year, int? month)
         {
-            //retorna apenas se user estiver logado
+            // Retorna apenas se user estiver logado
             if (User.Identity.IsAuthenticated)
             {
-                return View(await _context.Posts.ToListAsync());
+                var posts = from p in _context.Posts
+                            select p;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    posts = posts.Where(s => s.Description.Contains(searchString));
+                }
+
+                if (year.HasValue)
+                {
+                    posts = posts.Where(s => s.CreatedAt.Year == year.Value);
+                }
+
+                if (month.HasValue)
+                {
+                    posts = posts.Where(s => s.CreatedAt.Month == month.Value);
+                }
+
+                return View(await posts.ToListAsync());
             }
             else
             {
-                //login do user
+                // Login do user
                 return RedirectToAction("Login", "Identity/Account");
             }
-
-
         }
 
         // GET: Posts/Details/5
@@ -116,42 +132,66 @@ namespace Blog.Controllers
 
 
 
-        // GET: Posts/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+    // GET: Posts/Edit/5
+public async Task<IActionResult> Edit(int? id)
+{
+    if (id == null)
+    {
+        return NotFound();
+    }
 
-            var posts = await _context.Posts.FindAsync(id);
-            if (posts == null)
-            {
-                return NotFound();
-            }
-            return View(posts);
-        }
+    var post = await _context.Posts.FindAsync(id);
+    if (post == null)
+    {
+        return NotFound();
+    }
 
-        // POST: Posts/Edit/5
+    // Verificar se o usuário logado é o autor da postagem
+    var userId = _userManager.GetUserId(User);
+    if (post.UserId != userId)
+    {
+        return Forbid(); // Retornar um erro 403 (Forbidden)
+    }
+
+    return View(post);
+}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Image")] Posts posts)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Image")] Posts editedPost)
         {
-            if (id != posts.Id)
+            if (id != editedPost.Id)
             {
                 return NotFound();
             }
+
+            // Verificar se o usuário está autenticado
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Identity/Account");
+            }
+
+            // Verificar se o usuário é o autor do post
+            var userId = _userManager.GetUserId(User);
+            var originalPost = await _context.Posts.FindAsync(id);
+            if (originalPost.UserId != userId)
+            {
+                return Forbid(); // Retornar um erro 403 (Forbidden)
+            }
+
+            // Atualizar apenas as propriedades editáveis
+            originalPost.Description = editedPost.Description;
+            originalPost.Image = editedPost.Image;
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(posts);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PostsExists(posts.Id))
+                    if (!PostsExists(editedPost.Id))
                     {
                         return NotFound();
                     }
@@ -162,8 +202,10 @@ namespace Blog.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(posts);
+            return View(editedPost);
         }
+
+
 
         // GET: Posts/Delete/5
         public async Task<IActionResult> Delete(int? id)

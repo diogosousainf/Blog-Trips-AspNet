@@ -24,8 +24,15 @@
                 </div>
                 <div class="card-footer">
                     <div class="btn-group" role="group" aria-label="Post Actions">
-                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
-                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Delete
+                            </a>
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to List
+                        </a>
                     </div>
                 </div>
             </div>

@@ -8,41 +8,61 @@
 <!-- Hero Section -->
 <section class="hero">
     <div class="container">
-        <h2 class="text-center">Latest Postssssssssssssssssssssss</h2>
+        <h2 class="text-center">Latest Posts</h2>
         <p>Stay updated with the latest posts.</p>
     </div>
 </section>
 
-<!-- Latest Posts Section -->
-<section class="latest-posts">
+<!-- Search Section -->
+<section class="search-section">
     <div class="container">
-        <div class="row justify-content-center">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-8 mb-4">
-                    <div class="card shadow rounded">
-                        <div class="card-body">
-                            <img class="card-img-top img-fluid mb-3" src="@item.Image" alt="@item.Description">
-                            <p class="card-text">@item.Description</p> 
-                            <p class="card-text">by: @item.Email</p> 
-                            <p class="card-text">@item.CreatedAt</p>
-                        </div>
-                        <div class="card-footer">
-                            <div class="btn-group" role="group" aria-label="Post Actions">
-                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
+        <form asp-action="Index" method="get">
+            <div class="input-group mb-3">
+                <input type="text" name="searchString" class="form-control" placeholder="Search for articles..." value="@ViewData["CurrentFilter"]">
+                <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Navigation Section -->
+<section class="navigation-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <nav class="nav flex-column">
+                    @* Dynamically generate years and months *@
+                    @foreach (var yearGroup in Model.GroupBy(p => p.CreatedAt.Year).OrderByDescending(g => g.Key))
+                    {
+                        <a class="nav-link" href="#">@yearGroup.Key</a>
+                        @foreach (var monthGroup in yearGroup.GroupBy(p => p.CreatedAt.Month).OrderByDescending(g => g.Key))
+                        {
+                            <a class="nav-link ms-3" href="#">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(monthGroup.Key)</a>
+                        }
+                    }
+                </nav>
+            </div>
+            <div class="col-md-9">
+                <div class="row justify-content-center">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-12 mb-4">
+                            <div class="card shadow rounded">
+                                <div class="card-body">
+                                    <a asp-action="Details" asp-route-id="@item.Id">
+                                        <img class="card-img-top img-fluid mb-3" src="@item.Image" alt="@item.Description">
+                                    </a>                                    <p class="card-text">@item.Description</p>
+                                    <p class="card-text">by: @item.Email</p>
+                                    <p class="card-text">@item.CreatedAt</p>
+                                </div>
+                                <div class="card-footer">
+                                  
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div>
-            }
+            </div>
         </div>
     </div>
 </section>
@@ -57,7 +77,11 @@
         color: #fff;
     }
 
-    .latest-posts {
+    .search-section {
+        padding: 20px 0;
+    }
+
+    .navigation-section {
         padding: 50px 0;
     }
 
@@ -70,4 +94,17 @@
             transform: translateY(-5px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
+
+    .nav-link {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+    .ms-3 {
+        margin-left: 1rem;
+    }
 </style>

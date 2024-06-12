@@ -31,7 +31,6 @@
         <div class="row">
             <div class="col-md-3">
                 <nav class="nav flex-column">
-                    @* Dynamically generate years and months *@
                     @foreach (var yearGroup in Model.GroupBy(p => p.CreatedAt.Year).OrderByDescending(g => g.Key))
                     {
                         <a class="nav-link" href="#">@yearGroup.Key</a>
@@ -55,7 +54,7 @@
                                     <p class="card-text">by: @item.Email</p>
                                     <p class="card-text">@item.CreatedAt</p>
                                 </div>
-                               
+
                             </div>
                         </div>
                     }

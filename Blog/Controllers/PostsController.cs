@@ -28,7 +28,6 @@ namespace Blog.Controllers
         // GET: Posts
         public async Task<IActionResult> Index(string searchString, int? year, int? month)
         {
-            // Retorna apenas se user estiver logado
             if (User.Identity.IsAuthenticated)
             {
                 var posts = from p in _context.Posts
@@ -53,7 +52,6 @@ namespace Blog.Controllers
             }
             else
             {
-                // Login do user
                 return RedirectToAction("Login", "Identity/Account");
             }
         }
@@ -85,13 +83,8 @@ namespace Blog.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Description")] Posts posts, IFormFile imageFile)
         {
-            // Definir o UserId do user logado
             posts.UserId = _userManager.GetUserId(User);
-
-            // Definir a data de criação
             posts.CreatedAt = DateTime.Now;
-
-            // Definir o Email do user logado
             var user = await _userManager.GetUserAsync(User);
             posts.Email = user?.Email;
 
@@ -99,19 +92,14 @@ namespace Blog.Controllers
             {
                 if (imageFile != null && imageFile.Length > 0)
                 {
-                    // Gera um nome de arquivo único 
                     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-
-                    // Define o caminho onde o arquivo será salvo (pode ser um diretório dentro de wwwroot)
                     var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", fileName);
 
-                    // Salva o arquivo no disco
                     using (var stream = new FileStream(imagePath, FileMode.Create))
                     {
                         await imageFile.CopyToAsync(stream);
                     }
 
-                    // Define o caminho relativo da imagem no disco para a propriedade Image
                     posts.Image = "/images/" + fileName;
                 }
 
@@ -120,7 +108,6 @@ namespace Blog.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            // Adicionando debug para listar erros do ModelState
             var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
             foreach (var error in errors)
             {
@@ -130,58 +117,66 @@ namespace Blog.Controllers
             return View(posts);
         }
 
+        // GET: Posts/Edit/5
+        [HttpGet("Posts/Edit/{id}")]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var post = await _context.Posts.FindAsync(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
 
-    // GET: Posts/Edit/5
-public async Task<IActionResult> Edit(int? id)
-{
-    if (id == null)
-    {
-        return NotFound();
-    }
+            var userId = _userManager.GetUserId(User);
+            if (post.UserId != userId)
+            {
+                return Forbid();
+            }
 
-    var post = await _context.Posts.FindAsync(id);
-    if (post == null)
-    {
-        return NotFound();
-    }
+            return View(post);
+        }
 
-    // Verificar se o user logado é o autor da postagem
-    var userId = _userManager.GetUserId(User);
-    if (post.UserId != userId)
-    {
-        return Forbid(); // Retornar um erro 403 (Forbidden)
-    }
-
-    return View(post);
-}
-
-        [HttpPost]
+        // POST: Posts/Edit/5
+        [HttpPost("Posts/Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Image")] Posts editedPost)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Image")] Posts editedPost, IFormFile imageFile)
         {
             if (id != editedPost.Id)
             {
                 return NotFound();
             }
 
-            // Verificar se o usuário está autenticado
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Identity/Account");
             }
 
-            // Verificar se o usuário é o autor do post
             var userId = _userManager.GetUserId(User);
             var originalPost = await _context.Posts.FindAsync(id);
             if (originalPost.UserId != userId)
             {
-                return Forbid(); // Retornar um erro 403 (Forbidden)
+                return Forbid();
             }
 
-            // Atualizar apenas as propriedades editáveis
             originalPost.Description = editedPost.Description;
-            originalPost.Image = editedPost.Image;
+
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", fileName);
+
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(stream);
+                }
+
+                originalPost.Image = "/images/" + fileName;
+            }
 
             if (ModelState.IsValid)
             {
@@ -204,8 +199,6 @@ public async Task<IActionResult> Edit(int? id)
             }
             return View(editedPost);
         }
-
-
 
         // GET: Posts/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -247,12 +240,9 @@ public async Task<IActionResult> Edit(int? id)
         // GET: Posts/MyPosts
         public async Task<IActionResult> MyPosts()
         {
-            // Verifica se o user está autenticado
             if (User.Identity.IsAuthenticated)
             {
-                // Obtém o ID 
                 var userId = _userManager.GetUserId(User);
-                // Obtém os posts 
                 var userPosts = await _context.Posts.Where(p => p.UserId == userId).ToListAsync();
                 return View(userPosts);
             }
@@ -261,7 +251,5 @@ public async Task<IActionResult> Edit(int? id)
                 return RedirectToAction("Login", "Identity/Account");
             }
         }
-
-
     }
 }

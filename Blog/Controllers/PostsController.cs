@@ -146,7 +146,7 @@ public async Task<IActionResult> Edit(int? id)
         return NotFound();
     }
 
-    // Verificar se o usuário logado é o autor da postagem
+    // Verificar se o user logado é o autor da postagem
     var userId = _userManager.GetUserId(User);
     if (post.UserId != userId)
     {

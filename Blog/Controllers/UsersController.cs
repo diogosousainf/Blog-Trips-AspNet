@@ -14,14 +14,14 @@ public class UsersController : Controller
         _userManager = userManager;
     }
 
-    // Lista de Usuários
+    // Lista de Users
     public IActionResult Index()
     {
         var users = _userManager.Users.ToList();
         return View(users);
     }
 
-    // Detalhes do Usuário
+    // Detalhes do Users
     public async Task<IActionResult> Details(string id)
     {
         if (id == null)
@@ -38,13 +38,13 @@ public class UsersController : Controller
         return View(user);
     }
 
-    // Criar Usuário (GET)
+    // Criar User (GET)
     public IActionResult Create()
     {
         return View();
     }
 
-    // Criar Usuário (POST)
+    // Criar User (POST)
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("UserName,Email,Password")] CreateUserModel model)
@@ -68,7 +68,7 @@ public class UsersController : Controller
         return View(model);
     }
 
-    // Editar Usuário (GET)
+    // Editar User (GET)
     public async Task<IActionResult> Edit(string id)
     {
         if (id == null)
@@ -86,7 +86,7 @@ public class UsersController : Controller
         return View(model);
     }
 
-    // Editar Usuário (POST)
+    // Editar User(POST)
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(string id, [Bind("Id,UserName,Email")] EditUserModel model)
@@ -122,7 +122,7 @@ public class UsersController : Controller
         return View(model);
     }
 
-    // Deletar Usuário (GET)
+    // Deletar User (GET)
     public async Task<IActionResult> Delete(string id)
     {
         if (id == null)
@@ -139,7 +139,7 @@ public class UsersController : Controller
         return View(user);
     }
 
-    // Deletar Usuário (POST)
+    // Deletar User(POST)
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(string id)

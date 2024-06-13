@@ -13,7 +13,7 @@ public class UsersController : Controller
     {
         _userManager = userManager;
     }
-
+    [Authorize(Roles = "Admin")]
     // Lista de Users
     public IActionResult Index()
     {

@@ -1,26 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\diogo\\OneDrive\\\u00C1rea de Trabalho\\Blog-Trips-AspNet\\",
+  "WorkspaceRootPath": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\diogo\\onedrive\\\u00E1rea de trabalho\\blog-trips-aspnet\\blog\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\utilizador\\onedrive - atec - academia de forma\u00E7\u00E3o\\documents\\github\\blog-trips-aspnet\\blog\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|solutionrelative:blog\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\utilizador\\onedrive - atec - academia de forma\u00E7\u00E3o\\documents\\github\\blog-trips-aspnet\\blog\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|solutionrelative:blog\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\diogo\\onedrive\\\u00E1rea de trabalho\\blog-trips-aspnet\\blog\\controllers\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\utilizador\\onedrive - atec - academia de forma\u00E7\u00E3o\\documents\\github\\blog-trips-aspnet\\blog\\controllers\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|solutionrelative:blog\\controllers\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\diogo\\onedrive\\\u00E1rea de trabalho\\blog-trips-aspnet\\blog\\views\\posts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|solutionrelative:blog\\views\\posts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\utilizador\\onedrive - atec - academia de forma\u00E7\u00E3o\\documents\\github\\blog-trips-aspnet\\blog\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|solutionrelative:blog\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\diogo\\onedrive\\\u00E1rea de trabalho\\blog-trips-aspnet\\blog\\views\\posts\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|solutionrelative:blog\\views\\posts\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\utilizador\\onedrive - atec - academia de forma\u00E7\u00E3o\\documents\\github\\blog-trips-aspnet\\blog\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|solutionrelative:blog\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\diogo\\onedrive\\\u00E1rea de trabalho\\blog-trips-aspnet\\blog\\views\\posts\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|solutionrelative:blog\\views\\posts\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|c:\\users\\utilizador\\onedrive - atec - academia de forma\u00E7\u00E3o\\documents\\github\\blog-trips-aspnet\\blog\\migrations\\20240612164416_createpoststable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F139C374-B073-443A-AA7C-999C4746BE47}|Blog\\Blog.csproj|solutionrelative:blog\\migrations\\20240612164416_createpoststable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +34,88 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\diogo\\OneDrive\\\u00C1rea de Trabalho\\Blog-Trips-AspNet\\Blog\\Program.cs",
-              "RelativeDocumentMoniker": "Blog\\Program.cs",
-              "ToolTip": "C:\\Users\\diogo\\OneDrive\\\u00C1rea de Trabalho\\Blog-Trips-AspNet\\Blog\\Program.cs",
-              "RelativeToolTip": "Blog\\Program.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "Blog\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "Blog\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T21:03:20.849Z",
+              "WhenOpened": "2024-06-13T09:45:25.807Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\diogo\\OneDrive\\\u00C1rea de Trabalho\\Blog-Trips-AspNet\\Blog\\Views\\Posts\\Details.cshtml",
-              "RelativeDocumentMoniker": "Blog\\Views\\Posts\\Details.cshtml",
-              "ToolTip": "C:\\Users\\diogo\\OneDrive\\\u00C1rea de Trabalho\\Blog-Trips-AspNet\\Blog\\Views\\Posts\\Details.cshtml",
-              "RelativeToolTip": "Blog\\Views\\Posts\\Details.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-12T21:02:11.77Z",
+              "DocumentIndex": 5,
+              "Title": "20240612164416_CreatePostsTable.cs",
+              "DocumentMoniker": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Migrations\\20240612164416_CreatePostsTable.cs",
+              "RelativeDocumentMoniker": "Blog\\Migrations\\20240612164416_CreatePostsTable.cs",
+              "ToolTip": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Migrations\\20240612164416_CreatePostsTable.cs",
+              "RelativeToolTip": "Blog\\Migrations\\20240612164416_CreatePostsTable.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T09:37:32.308Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "PostsController.cs",
+              "DocumentMoniker": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Controllers\\PostsController.cs",
+              "RelativeDocumentMoniker": "Blog\\Controllers\\PostsController.cs",
+              "ToolTip": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Controllers\\PostsController.cs",
+              "RelativeToolTip": "Blog\\Controllers\\PostsController.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAAADMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T09:35:12.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\diogo\\OneDrive\\\u00C1rea de Trabalho\\Blog-Trips-AspNet\\Blog\\Views\\Posts\\Index.cshtml",
-              "RelativeDocumentMoniker": "Blog\\Views\\Posts\\Index.cshtml",
-              "ToolTip": "C:\\Users\\diogo\\OneDrive\\\u00C1rea de Trabalho\\Blog-Trips-AspNet\\Blog\\Views\\Posts\\Index.cshtml",
-              "RelativeToolTip": "Blog\\Views\\Posts\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGsAAAAAAAAA",
+              "DocumentMoniker": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Blog\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Blog\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-12T20:58:32.377Z",
+              "WhenOpened": "2024-06-13T09:30:58.873Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\diogo\\OneDrive\\\u00C1rea de Trabalho\\Blog-Trips-AspNet\\Blog\\Views\\Posts\\Edit.cshtml",
-              "RelativeDocumentMoniker": "Blog\\Views\\Posts\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\diogo\\OneDrive\\\u00C1rea de Trabalho\\Blog-Trips-AspNet\\Blog\\Views\\Posts\\Edit.cshtml",
-              "RelativeToolTip": "Blog\\Views\\Posts\\Edit.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAF8AAAAAAAAA",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Blog\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Blog\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAADEAAAAAAAAAAAAkwE0AAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-12T20:49:10.316Z",
+              "WhenOpened": "2024-06-13T09:30:56.015Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PostsController.cs",
-              "DocumentMoniker": "C:\\Users\\diogo\\OneDrive\\\u00C1rea de Trabalho\\Blog-Trips-AspNet\\Blog\\Controllers\\PostsController.cs",
-              "RelativeDocumentMoniker": "Blog\\Controllers\\PostsController.cs",
-              "ToolTip": "C:\\Users\\diogo\\OneDrive\\\u00C1rea de Trabalho\\Blog-Trips-AspNet\\Blog\\Controllers\\PostsController.cs",
-              "RelativeToolTip": "Blog\\Controllers\\PostsController.cs",
-              "ViewState": "AQIAAK0AAAAAAAAAAAAgwP8AAAAAAAAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Program.cs",
+              "RelativeDocumentMoniker": "Blog\\Program.cs",
+              "ToolTip": "C:\\Users\\Utilizador\\OneDrive - ATEC - Academia de Forma\u00E7\u00E3o\\Documents\\GitHub\\Blog-Trips-AspNet\\Blog\\Program.cs",
+              "RelativeToolTip": "Blog\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-12T17:19:14.343Z",
+              "WhenOpened": "2024-06-12T21:03:20.849Z",
               "EditorCaption": ""
             }
           ]

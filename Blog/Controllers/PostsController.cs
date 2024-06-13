@@ -28,8 +28,7 @@ namespace Blog.Controllers
         // GET: Posts
         public async Task<IActionResult> Index(string searchString, int? year, int? month)
         {
-            if (User.Identity.IsAuthenticated)
-            {
+
                 var posts = from p in _context.Posts
                             select p;
 
@@ -49,11 +48,8 @@ namespace Blog.Controllers
                 }
 
                 return View(await posts.ToListAsync());
-            }
-            else
-            {
-                return RedirectToAction("Login", "Identity/Account");
-            }
+            
+            
         }
 
         // GET: Posts/Details/5

@@ -55,21 +55,29 @@
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Posts" asp-action="Create">New Post</a>
                             </li>
+                        }
 
 
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Posts" asp-action="Index">Feed</a>
                             </li>
                     
-
+                        @if (User.Identity.IsAuthenticated)
+                        {
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Posts" asp-action="MyPosts">My posts</a>
                             </li>
+                        }
 
-                            <li class="nav-item">
+                        @if (User.IsInRole("Admin"))
+                        {
+                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Users" asp-action="Index">User Management</a>
                             </li>
+                        
                         }
+                       
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

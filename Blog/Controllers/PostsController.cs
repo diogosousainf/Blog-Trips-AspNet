@@ -271,19 +271,23 @@ namespace Blog.Controllers
 
             if (existingLike != null)
             {
-                // Se já deu like, redireciona de volta para a página de posts
-                return RedirectToAction(nameof(Index));
+                // Se já deu like, então remove o like (dislike)
+                _context.Likes.Remove(existingLike);
+            }
+            else
+            {
+                // Se ainda não deu like, cria um novo like
+                var newLike = new Like
+                {
+                    PostId = postId,
+                    UserId = userId
+                };
+
+                // Adiciona o like ao contexto
+                _context.Likes.Add(newLike);
             }
 
-            // Cria um novo like
-            var newLike = new Like
-            {
-                PostId = postId,
-                UserId = userId
-            };
-
-            // Adiciona o like ao contexto e salva no banco de dados
-            _context.Likes.Add(newLike);
+            // Salva as alterações no banco de dados
             await _context.SaveChangesAsync();
 
             // Atualiza a contagem de likes do post
@@ -294,6 +298,7 @@ namespace Blog.Controllers
             // Redireciona de volta para a página de posts
             return RedirectToAction(nameof(Index));
         }
+
 
 
     }

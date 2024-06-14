@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Blog.Models.Posts>
+﻿@using System.Security.Claims
+@model IEnumerable<Blog.Models.Posts>
 
 @{
     ViewData["Title"] = "Latest Posts";
@@ -50,27 +51,41 @@
                             <div class="card shadow rounded">
                                 <div class="card-body">
                                     <a asp-action="Details" asp-route-id="@item.Id">
-                                        <img class="card-img-top img-fluid mb-3" src="@item.Image" alt="@item.Description">
+                                        <img class="card-img-top img-fluid mb-3" src="@item.Image" alt="@item.Description" id="postImage-@item.Id">
                                     </a>
                                     <p class="card-text">@item.Description</p>
                                     <p class="card-text">by: @item.Email</p>
                                     <p class="card-text">@item.CreatedAt</p>
 
-                                    <!-- Exibe a contagem de likes -->
-                                    <p class="card-text">
-                                        <i class="fas fa-thumbs-up"></i> @item.LikeCount
-                                    </p>
-
-                                    <!-- Formulário para dar like -->
-                                    <form asp-action="Like" method="post">
-                                        <input type="hidden" name="postId" value="@item.Id" />
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-thumbs-up"></i> Like</button>
-                                        @Html.AntiForgeryToken()
+                                    <!-- Botão de Like/Dislike -->
+                                    <form id="likeForm-@item.Id" asp-action="Like" asp-route-postId="@item.Id" method="post">
+                                        <button id="likeButton-@item.Id" type="submit" class="btn btn-outline-primary">
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                // Verifica se o usuário já deu like no post
+                                                var existingLike = item.Likes.FirstOrDefault(l => l.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier));
+                                                if (existingLike != null && existingLike.PostId == item.Id)
+                                                {
+                                                    <i class="fas fa-thumbs-up"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="far fa-thumbs-up"></i>
+                                                                    }
+                                            }
+                                            else
+                                            {
+                                                <i class="far fa-thumbs-up"></i>
+                                                                    }
+                                        </button>
+                                        <span id="likeCount-@item.Id">@item.LikeCount</span>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     }
+
+
 
                 </div>
             </div>
@@ -118,4 +133,68 @@
     .ms-3 {
         margin-left: 1rem;
     }
+
+    .btn-like {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-like:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-like i {
+            margin-right: 5px;
+        }
+
+        .btn-like.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
 </style>
+@section Scripts {
+    <script>
+        function handleLike(postId) {
+            var likeButton = document.querySelector(`#likeButton-${postId}`);
+            var likeCount = document.querySelector(`#likeCount-${postId}`);
+
+            // Verifica se o botão está desativado para evitar múltiplos cliques
+            if (likeButton.disabled) {
+                return;
+            }
+
+            // Desativa o botão temporariamente para evitar múltiplos cliques
+            likeButton.disabled = true;
+
+            // Atualiza o texto do botão e contagem de likes após a resposta do servidor
+            fetch(`/Posts/Like?postId=${postId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'RequestVerificationToken': '@Html.AntiForgeryToken()'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.liked) {
+                        likeButton.innerHTML = '<i class="fas fa-thumbs-up"></i> Liked';
+                    } else {
+                        likeButton.innerHTML = '<i class="far fa-thumbs-up"></i> Like';
+                    }
+                    likeCount.innerText = data.likeCount;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                })
+                .finally(() => {
+                    likeButton.disabled = false; // Reativa o botão após a resposta
+                });
+        }
+    </script>
+}
+
+}

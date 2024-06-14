@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Latest Posts";
 }
+
 <script src="https://kit.fontawesome.com/0ba84eacf9.js" crossorigin="anonymous"></script>
 
 <!-- Hero Section -->
@@ -50,14 +51,27 @@
                                 <div class="card-body">
                                     <a asp-action="Details" asp-route-id="@item.Id">
                                         <img class="card-img-top img-fluid mb-3" src="@item.Image" alt="@item.Description">
-                                    </a>                                    <p class="card-text">@item.Description</p>
+                                    </a>
+                                    <p class="card-text">@item.Description</p>
                                     <p class="card-text">by: @item.Email</p>
                                     <p class="card-text">@item.CreatedAt</p>
-                                </div>
 
+                                    <!-- Exibe a contagem de likes -->
+                                    <p class="card-text">
+                                        <i class="fas fa-thumbs-up"></i> @item.LikeCount
+                                    </p>
+
+                                    <!-- Formulário para dar like -->
+                                    <form asp-action="Like" method="post">
+                                        <input type="hidden" name="postId" value="@item.Id" />
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-thumbs-up"></i> Like</button>
+                                        @Html.AntiForgeryToken()
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     }
+
                 </div>
             </div>
         </div>

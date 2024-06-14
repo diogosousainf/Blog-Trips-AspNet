@@ -28,28 +28,25 @@ namespace Blog.Controllers
         // GET: Posts
         public async Task<IActionResult> Index(string searchString, int? year, int? month)
         {
+            var posts = from p in _context.Posts
+                        select p;
 
-                var posts = from p in _context.Posts
-                            select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                posts = posts.Where(s => s.Description.Contains(searchString));
+            }
 
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    posts = posts.Where(s => s.Description.Contains(searchString));
-                }
+            if (year.HasValue)
+            {
+                posts = posts.Where(s => s.CreatedAt.Year == year.Value);
+            }
 
-                if (year.HasValue)
-                {
-                    posts = posts.Where(s => s.CreatedAt.Year == year.Value);
-                }
+            if (month.HasValue)
+            {
+                posts = posts.Where(s => s.CreatedAt.Month == month.Value);
+            }
 
-                if (month.HasValue)
-                {
-                    posts = posts.Where(s => s.CreatedAt.Month == month.Value);
-                }
-
-                return View(await posts.ToListAsync());
-            
-            
+            return View(await posts.ToListAsync());
         }
 
         // GET: Posts/Details/5
@@ -60,24 +57,27 @@ namespace Blog.Controllers
                 return NotFound();
             }
 
-            var posts = await _context.Posts.FirstOrDefaultAsync(m => m.Id == id);
-            if (posts == null)
+            var post = await _context.Posts
+                .Include(p => p.Likes) // Incluir os likes
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (post == null)
             {
                 return NotFound();
             }
 
-            return View(posts);
+            return View(post);
         }
+
+
 
         // GET: Posts/Create
         public IActionResult Create()
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Description")] Posts posts, IFormFile imageFile)
+        public async Task<IActionResult> Create([Bind("Description, Image")] Posts posts, IFormFile imageFile)
         {
             posts.UserId = _userManager.GetUserId(User);
             posts.CreatedAt = DateTime.Now;
@@ -86,32 +86,38 @@ namespace Blog.Controllers
 
             if (ModelState.IsValid)
             {
-                if (imageFile != null && imageFile.Length > 0)
+                try
                 {
-                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-                    var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", fileName);
-
-                    using (var stream = new FileStream(imagePath, FileMode.Create))
+                    if (imageFile != null && imageFile.Length > 0)
                     {
-                        await imageFile.CopyToAsync(stream);
+                        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                        var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", fileName);
+
+                        using (var stream = new FileStream(imagePath, FileMode.Create))
+                        {
+                            await imageFile.CopyToAsync(stream);
+                        }
+
+                        posts.Image = "/images/" + fileName;
                     }
 
-                    posts.Image = "/images/" + fileName;
+                    _context.Add(posts);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
                 }
-
-                _context.Add(posts);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                    Console.WriteLine(ex.Message);
+                }
             }
 
-            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-            foreach (var error in errors)
-            {
-                Console.WriteLine(error);
-            }
-
+            // Se houver erros de validação, exiba os erros na view
             return View(posts);
         }
+
+
 
         // GET: Posts/Edit/5
         [HttpGet("Posts/Edit/{id}")]
@@ -204,13 +210,13 @@ namespace Blog.Controllers
                 return NotFound();
             }
 
-            var posts = await _context.Posts.FirstOrDefaultAsync(m => m.Id == id);
-            if (posts == null)
+            var post = await _context.Posts.FirstOrDefaultAsync(m => m.Id == id);
+            if (post == null)
             {
                 return NotFound();
             }
 
-            return View(posts);
+            return View(post);
         }
 
         // POST: Posts/Delete/5
@@ -218,10 +224,10 @@ namespace Blog.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var posts = await _context.Posts.FindAsync(id);
-            if (posts != null)
+            var post = await _context.Posts.FindAsync(id);
+            if (post != null)
             {
-                _context.Posts.Remove(posts);
+                _context.Posts.Remove(post);
             }
 
             await _context.SaveChangesAsync();
@@ -247,5 +253,50 @@ namespace Blog.Controllers
                 return RedirectToAction("Login", "Identity/Account");
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Like(int postId)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Identity/Account");
+            }
+
+            var userId = _userManager.GetUserId(User);
+
+            // Verifica se o usuário já deu like no post
+            var existingLike = await _context.Likes
+                .FirstOrDefaultAsync(l => l.PostId == postId && l.UserId == userId);
+
+            if (existingLike != null)
+            {
+                // Se já deu like, redireciona de volta para a página de posts
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Cria um novo like
+            var newLike = new Like
+            {
+                PostId = postId,
+                UserId = userId
+            };
+
+            // Adiciona o like ao contexto e salva no banco de dados
+            _context.Likes.Add(newLike);
+            await _context.SaveChangesAsync();
+
+            // Atualiza a contagem de likes do post
+            var post = await _context.Posts.FindAsync(postId);
+            post.LikeCount = await _context.Likes.Where(l => l.PostId == postId).CountAsync();
+            await _context.SaveChangesAsync();
+
+            // Redireciona de volta para a página de posts
+            return RedirectToAction(nameof(Index));
+        }
+
+
     }
 }
+
+

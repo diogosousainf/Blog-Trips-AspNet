@@ -4,7 +4,13 @@
     ViewData["Title"] = "Meus Posts";
 }
 
-<h2 class="text-center mb-4">My Posts</h2>
+<h2 class="text-center mb-4 mt-5">My Posts</h2>
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center" role="alert">
+        You haven't created any posts yet.
+    </div>
+}
 
 <div class="container">
     <div class="row">
@@ -14,20 +20,20 @@
                 <div class="card h-100 shadow">
                     <img class="card-img-top img-fluid" src="@item.Image" alt="@item.Description" style="height: 200px; object-fit: cover;">
                     <div class="card-body">
-                        <p class="card-text mb-5">@item.Description</p>
-                        <p class="card-text">by: @item.Email</p>
-                        <p class="card-text"> @item.CreatedAt</p>
+                        <p class="card-text mb-3">@item.Description</p>
+                        <p class="card-text text-muted mb-1">by: @item.Email</p>
+                        <p class="card-text text-muted"> @item.CreatedAt.ToShortDateString()</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer bg-white border-top-0">
                         <div class="btn-group" role="group" aria-label="Post Actions">
                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">
-                                <i class="fas fa-eye"></i>
+                                <i class="fas fa-eye"></i> Details
                             </a>
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">
-                                <i class="fas fa-edit"></i>
+                                <i class="fas fa-edit"></i> Edit
                             </a>
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
-                                <i class="fas fa-trash-alt"></i>
+                                <i class="fas fa-trash-alt"></i> Delete
                             </a>
                         </div>
                     </div>
@@ -39,7 +45,7 @@
 
 <style>
     body {
-        background-color: #f8f9fa;
+        background-color: #ecfeff;
         color: #333;
         font-family: Arial, sans-serif;
     }
@@ -64,33 +70,31 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
+    .btn-primary, .btn-secondary, .btn-danger {
+        border: none;
+    }
+
     .btn-primary {
         background-color: #007bff;
-        border-color: #007bff;
     }
 
         .btn-primary:hover {
             background-color: #0056b3;
-            border-color: #0056b3;
         }
 
     .btn-secondary {
         background-color: #6c757d;
-        border-color: #6c757d;
     }
 
         .btn-secondary:hover {
             background-color: #545b62;
-            border-color: #545b62;
         }
 
     .btn-danger {
         background-color: #dc3545;
-        border-color: #dc3545;
     }
 
         .btn-danger:hover {
             background-color: #c82333;
-            border-color: #bd2130;
         }
 </style>

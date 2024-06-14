@@ -15,24 +15,58 @@
     </div>
 </section>
 
-<!-- Search Section -->
+<!-- Search and Filter Section -->
 <section class="search-section">
     <div class="container">
-        <form asp-action="Index" method="get">
-            <div class="input-group mb-3">
-                <input type="text" name="searchString" class="form-control" placeholder="Search for articles..." value="@ViewData["CurrentFilter"]">
-                <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <form asp-action="Index" method="get">
+                    <div class="input-group">
+                        <input type="text" name="searchString" class="form-control" placeholder="Search for articles..." value="@ViewData["CurrentFilter"]">
+                        <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div class="col-md-6">
+                <form asp-action="Index" method="get">
+                    <div class="input-group">
+                        <select name="year" class="form-select">
+                            <option value="">Filter by Year</option>
+                            @foreach (var yearGroup in Model.GroupBy(p => p.CreatedAt.Year).OrderByDescending(g => g.Key))
+                            {
+                                <option value="@yearGroup.Key">@yearGroup.Key</option>
+                            }
+                        </select>
+                        <select name="month" class="form-select ms-3">
+                            <option value="">Filter by Month</option>
+                            @foreach (var monthGroup in Model.GroupBy(p => p.CreatedAt.Month).OrderByDescending(g => g.Key))
+                            {
+                                <option value="@monthGroup.Key">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(monthGroup.Key)</option>
+                            }
+                        </select>
+                        <select name="day" class="form-select ms-3">
+                            <option value="">Filter by Day</option>
+                            @foreach (var dayGroup in Model.GroupBy(p => p.CreatedAt.Day).OrderByDescending(g => g.Key))
+                            {
+                                <option value="@dayGroup.Key">@dayGroup.Key</option>
+                            }
+                        </select>
+                        <button class="btn btn-outline-secondary ms-3" type="submit">Filter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Navigation Section -->
+<!-- Navigation and Posts Section -->
 <section class="navigation-section">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <nav class="nav flex-column">
+                    <a asp-action="Create" class="btn btn-custom mt-3">Create Post</a>
+
                     @foreach (var yearGroup in Model.GroupBy(p => p.CreatedAt.Year).OrderByDescending(g => g.Key))
                     {
                         <a class="nav-link" href="#">@yearGroup.Key</a>
@@ -47,22 +81,20 @@
                 <div class="row justify-content-center">
                     @foreach (var item in Model)
                     {
-                        <div class="col-md-12 mb-4">
+                        <div class="col-md-6 mb-4">
                             <div class="card shadow rounded">
                                 <div class="card-body">
                                     <a asp-action="Details" asp-route-id="@item.Id">
                                         <img class="card-img-top img-fluid mb-3" src="@item.Image" alt="@item.Description" id="postImage-@item.Id">
                                     </a>
                                     <p class="card-text">@item.Description</p>
-                                    <p class="card-text">by: @item.Email</p>
-                                    <p class="card-text">@item.CreatedAt</p>
+                                    <p class="card-text text-muted">by: @item.Email • @item.CreatedAt.ToShortDateString()</p>
 
                                     <!-- Botão de Like/Dislike -->
                                     <form id="likeForm-@item.Id" asp-action="Like" asp-route-postId="@item.Id" method="post">
-                                        <button id="likeButton-@item.Id" type="submit" class="btn btn-outline-primary">
+                                        <button id="likeButton-@item.Id" type="submit" class="btn btn-outline-primary btn-sm">
                                             @if (User.Identity.IsAuthenticated)
                                             {
-                                                // Verifica se o usuário já deu like no post
                                                 var existingLike = item.Likes.FirstOrDefault(l => l.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier));
                                                 if (existingLike != null && existingLike.PostId == item.Id)
                                                 {
@@ -71,22 +103,19 @@
                                                 else
                                                 {
                                                     <i class="far fa-thumbs-up"></i>
-                                                                    }
+                                                }
                                             }
                                             else
                                             {
                                                 <i class="far fa-thumbs-up"></i>
-                                                                    }
+                                            }
                                         </button>
-                                        <span id="likeCount-@item.Id">@item.LikeCount</span>
+                                        <span id="likeCount-@item.Id" class="ms-2">@item.LikeCount</span>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     }
-
-
-
                 </div>
             </div>
         </div>
@@ -96,24 +125,25 @@
 <style>
     .hero {
         background-image: url('/bg01.jpg');
-        padding: 180px 0;
+        padding: 120px 0;
         text-align: center;
         background-size: cover;
         background-position: center;
         color: #fff;
     }
-
-    .search-section {
-        padding: 20px 0;
+    body{
+        background-color: #ecfeff;
     }
 
-    .navigation-section {
-        padding: 50px 0;
+    .search-section, .navigation-section {
+        padding: 20px 0;
     }
 
     .card {
         transition: all 0.3s ease;
         border: none;
+        background-color: #fff;
+        height: 100%; /* Garante que todos os cards tenham a mesma altura */
     }
 
         .card:hover {
@@ -124,6 +154,7 @@
     .nav-link {
         color: #007bff;
         text-decoration: none;
+        font-weight: bold;
     }
 
         .nav-link:hover {
@@ -154,47 +185,33 @@
             cursor: not-allowed;
             opacity: 0.7;
         }
-</style>
-@section Scripts {
-    <script>
-        function handleLike(postId) {
-            var likeButton = document.querySelector(`#likeButton-${postId}`);
-            var likeCount = document.querySelector(`#likeCount-${postId}`);
 
-            // Verifica se o botão está desativado para evitar múltiplos cliques
-            if (likeButton.disabled) {
-                return;
-            }
+    .card-text {
+        font-size: 0.9rem;
+    }
 
-            // Desativa o botão temporariamente para evitar múltiplos cliques
-            likeButton.disabled = true;
+    .font-weight-bold {
+        font-weight: bold;
+    }
 
-            // Atualiza o texto do botão e contagem de likes após a resposta do servidor
-            fetch(`/Posts/Like?postId=${postId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'RequestVerificationToken': '@Html.AntiForgeryToken()'
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.liked) {
-                        likeButton.innerHTML = '<i class="fas fa-thumbs-up"></i> Liked';
-                    } else {
-                        likeButton.innerHTML = '<i class="far fa-thumbs-up"></i> Like';
-                    }
-                    likeCount.innerText = data.likeCount;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                })
-                .finally(() => {
-                    likeButton.disabled = false; // Reativa o botão após a resposta
-                });
+    .text-muted {
+        color: #6c757d;
+    }
+
+    .btn-custom {
+        background-color: #ff9900; /* Cor de fundo personalizada */
+        color: #ffffff; /* Cor do texto */
+        border-color: #ff9900; /* Cor da borda */
+        font-size: 18px; /* Tamanho da fonte */
+        padding: 10px 20px; /* Espaçamento interno */
+        text-decoration: none; /* Remover sublinhado */
+    }
+
+        .btn-custom:hover,
+        .btn-custom:focus {
+            background-color: #e68a00; /* Cor de fundo ao passar o mouse ou focar */
+            border-color: #e68a00; /* Cor da borda ao passar o mouse ou focar */
+            color: #ffffff; /* Cor do texto ao passar o mouse ou focar */
         }
-    </script>
-}
 
-}
+</style>

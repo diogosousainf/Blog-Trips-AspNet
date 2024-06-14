@@ -14,36 +14,34 @@
                     <h4 class="card-title">Post Details</h4>
                     <hr />
                     <dl class="row">
-                        <dt class="col-sm-3">Description:</dt>
                         <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
-
-                        <dt class="col-sm-3">Image:</dt>
-                        <dd class="col-sm-9">
-                            <img src="@Model.Image" alt="@Model.Description" class="img-fluid" style="max-height: 300px; object-fit: cover;">
+                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
+                        <dd class="col-sm-9 text-center imagem">
+                            <img src="@Model.Image" alt="@Model.Description" class="img-fluid rounded-lg " style="max-height : 600px; width: auto; ">
                         </dd>
-                        <p class="card-text">
-                            <i class="fas fa-thumbs-up"></i> @Model.LikeCount
-                        </p>
-
+                        <dd class="col-sm-9">
+                            <p class="card-text">
+                                <i class="fas fa-thumbs-up"></i> @Model.LikeCount
+                            </p>
+                        </dd>
                     </dl>
                 </div>
-                @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.Email)
+                @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.Email || User.IsInRole("Admin"))
                 {
-                      <div class="card-footer">
-                    <div class="btn-group" role="group" aria-label="Post Actions">
-                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
-                            <i class="fas fa-trash"></i> Delete
+                    <div class="card-footer">
+                        <div class="btn-group" role="group" aria-label="Post Actions">
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                                <i class="fas fa-edit"></i> Edit
                             </a>
-                        <a asp-action="Index" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Back to List
-                        </a>
+                            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Back to List
+                            </a>
+                        </div>
                     </div>
-                </div>
                 }
-              
             </div>
         </div>
     </div>
@@ -74,5 +72,12 @@
     .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .imagem
+    {
+        text-align: center;
+        margin-left: 100px;
+        
     }
 </style>

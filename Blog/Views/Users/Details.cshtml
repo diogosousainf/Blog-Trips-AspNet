@@ -1,28 +1,33 @@
 ﻿@model Microsoft.AspNetCore.Identity.IdentityUser
 
 <div class="container text-center">
-    <h1>User details</h1>
+    <h1>User Details</h1>
 
-    <div class=" mt-5">
+    <div class="mt-5">
         <hr />
         <dl class="row">
-            <dt class="col-sm-2">
-                User name
+            <dt class="col-sm-3">
+                User Name
             </dt>
-            <dd class="col-sm-10">
+            <dd class="col-sm-9">
                 @Model.UserName
             </dd>
-            <dt class="col-sm-2">
+            <dt class="col-sm-3">
                 Email
             </dt>
-            <dd class="col-sm-10">
+            <dd class="col-sm-9">
                 @Model.Email
             </dd>
         </dl>
     </div>
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
-        <a asp-action="Index" class="btn btn-secondary">Voltar à Lista</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary mr-2">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
     </div>
 </div>
 
+<style>
+    body {
+        background-color: #ecfeff;
+    }
+</style>

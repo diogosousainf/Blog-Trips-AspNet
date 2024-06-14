@@ -17,7 +17,6 @@
 
         body {
             margin-bottom: 60px;
-            
         }
 
         .navbar {
@@ -25,64 +24,41 @@
             background-color: #124a6e;
         }
 
-        .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 60px; 
-            line-height: 60px; 
-            background-color: #124a6e;
-            color: white;
-        }
+     
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light   border-bottom box-shadow">
+        <nav class="navbar navbar-expand-sm navbar-light border-bottom box-shadow">
             <div class="container-fluid">
-                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">Viagens</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">TravelBlog</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>       
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Posts" asp-action="Create">New Post</a>
-                            </li>
-                        }
-
-
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Posts" asp-action="Index">Feed</a>
-                            </li>
-                    
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Posts" asp-action="MyPosts">My posts</a>
                             </li>
                         }
-
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Posts" asp-action="Index">Feed</a>
+                        </li>
                         @if (User.IsInRole("Admin"))
                         {
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Users" asp-action="Index">User Management</a>
                             </li>
-                        
                         }
-                       
-
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
+
     </header>
     <div class="">
         <main role="main" class="">

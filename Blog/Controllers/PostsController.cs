@@ -135,10 +135,7 @@ namespace Blog.Controllers
             }
 
             var userId = _userManager.GetUserId(User);
-            if (post.UserId != userId)
-            {
-                return Forbid();
-            }
+        
 
             return View(post);
         }
@@ -160,10 +157,7 @@ namespace Blog.Controllers
 
             var userId = _userManager.GetUserId(User);
             var originalPost = await _context.Posts.FindAsync(id);
-            if (originalPost.UserId != userId)
-            {
-                return Forbid();
-            }
+         
 
             originalPost.Description = editedPost.Description;
 

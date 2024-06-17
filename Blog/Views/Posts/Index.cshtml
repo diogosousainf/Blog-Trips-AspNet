@@ -88,7 +88,7 @@
                                         <img class="card-img-top img-fluid mb-3" src="@item.Image" alt="@item.Description" id="postImage-@item.Id">
                                     </a>
                                     <p class="card-text">@item.Description</p>
-                                    <p class="card-text text-muted">by: @item.Email • @item.CreatedAt.ToShortDateString()</p>
+                                    <p class="card-text text-muted"> @item.Email • @item.CreatedAt.ToShortDateString()</p>
 
                                     <!-- Botão de Like/Dislike -->
                                     <form id="likeForm-@item.Id" asp-action="Like" asp-route-postId="@item.Id" method="post">
@@ -143,7 +143,7 @@
         transition: all 0.3s ease;
         border: none;
         background-color: #fff;
-        height: 100%; /* Garante que todos os cards tenham a mesma altura */
+        height: 100%; /*  todos os cards tenham a mesma altura */
     }
 
         .card:hover {
@@ -199,19 +199,21 @@
     }
 
     .btn-custom {
-        background-color: #ff9900; /* Cor de fundo personalizada */
-        color: #ffffff; /* Cor do texto */
-        border-color: #ff9900; /* Cor da borda */
-        font-size: 18px; /* Tamanho da fonte */
-        padding: 10px 20px; /* Espaçamento interno */
-        text-decoration: none; /* Remover sublinhado */
+        background-color: #ff9900; 
+        color: #ffffff; 
+        border-color: #ff9900; 
+        font-size: 18px;
+        padding: 10px 20px;
+        text-decoration: none;
     }
 
         .btn-custom:hover,
         .btn-custom:focus {
-            background-color: #e68a00; /* Cor de fundo ao passar o mouse ou focar */
-            border-color: #e68a00; /* Cor da borda ao passar o mouse ou focar */
-            color: #ffffff; /* Cor do texto ao passar o mouse ou focar */
+            background-color: #e68a00; 
+            border-color: #e68a00; 
+            color: #ffffff; 
         }
+
+   
 
 </style>

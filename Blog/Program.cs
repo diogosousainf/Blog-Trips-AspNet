@@ -14,7 +14,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = false; // Desabilita a necessidade de confirma��o de email
+    options.SignIn.RequireConfirmedAccount = false; 
 })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -47,7 +47,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
-// Adicione a cria��o do administrador padr�o
+// administrador padrao
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;

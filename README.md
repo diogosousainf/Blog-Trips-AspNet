@@ -9,6 +9,7 @@ Welcome to the Travel Blog Project! This is an ASP.NET web application where use
 - **Create, Read, Update, Delete (CRUD) Operations**: Users can create, view, edit, and delete their travel posts.
 - **Image Upload**: Users can upload images to their travel posts.
 - **Tagging**: Users can add tags to their posts to categorize their travel experiences.
+<img src="2.png" alt="Screenshot 1">
 
 ## Technologies Used
 
@@ -17,6 +18,7 @@ Welcome to the Travel Blog Project! This is an ASP.NET web application where use
 - **SQL Server**: Database for storing user data and posts.
 - **Bootstrap**: Frontend framework for responsive design.
 - **jQuery**: JavaScript library for DOM manipulation and AJAX requests.
+<img src="3.png" alt="Screenshot 1">
 
 ## Getting Started
 
@@ -29,5 +31,9 @@ Welcome to the Travel Blog Project! This is an ASP.NET web application where use
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/travel-blog.git
-   cd travel-blog
+   git clone https://github.com/diogosousavc/Blog-Trips-AspNet
+
+<img src="4.png" alt="Screenshot 1">
+<img src="5.png" alt="Screenshot 1">
+<img src="6.png" alt="Screenshot 1">
+

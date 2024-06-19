@@ -3,7 +3,7 @@
 public class CreateUserModel
 {
     [Required]
-    [Display(Name = "Nome de Usuário")]
+    [Display(Name = "Nome de User")]
     public string UserName { get; set; }
 
     [Required]

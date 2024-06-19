@@ -113,7 +113,6 @@ namespace Blog.Controllers
                 }
             }
 
-            // Se houver erros de validação, exiba os erros na view
             return View(posts);
         }
 
@@ -259,7 +258,7 @@ namespace Blog.Controllers
 
             var userId = _userManager.GetUserId(User);
 
-            // Verifica se o usuário já deu like no post
+            // Verifica se o user já deu like no post
             var existingLike = await _context.Likes
                 .FirstOrDefaultAsync(l => l.PostId == postId && l.UserId == userId);
 

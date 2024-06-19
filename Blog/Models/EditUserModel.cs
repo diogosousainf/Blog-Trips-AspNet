@@ -5,7 +5,7 @@ public class EditUserModel
     public string Id { get; set; }
 
     [Required]
-    [Display(Name = "Nome de Usuário")]
+    [Display(Name = "Nome de User")]
     public string UserName { get; set; }
 
     [Required]

@@ -11,7 +11,7 @@ namespace Blog.Models
         // Relacionamento com posts
         public Posts Post { get; set; }
 
-        // Relacionamento com usuários
+        // Relacionamento com users
         public IdentityUser User { get; set; }
     }
 }
